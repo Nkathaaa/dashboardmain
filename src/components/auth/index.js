@@ -1,8 +1,9 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const Auth=(props) =>{
+    const [register,setRegister]=useState(false)
     const formik=useFormik({
         initialValues:{firstName:'',lastName:'',emailAddress:'',password:''},
         validationSchema:Yup.object({
@@ -84,8 +85,9 @@ const Auth=(props) =>{
                 
 
                     
-                        <button type="submit" className="btn btn-primary btn-block mb-4">Sign up</button>
-                        <button type="submit" className="btn btn-primary btn-block mb-4 ml-2">Register</button>
+                        <button  className="btn btn-success btn-block mb-4">{register ?'Register':'Login'}</button>
+                        <button  className="btn btn-primary btn-block  mb-4" OnClick={()=>setRegister(!register)}>Want to {!register?'Register':'Login'}</button>
+                       
                      
                       </div>  
                     </form>
