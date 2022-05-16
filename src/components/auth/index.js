@@ -15,7 +15,8 @@ const Auth=(props) =>{
             .string(),
             emailAddress:Yup
             .string()
-            .email("Enter a valid email address"),
+            .email("Enter a valid email address")
+            .required("Sorry the Name is required"),
             password:Yup
             .string()
             .required("Sorry the Name is required")  
@@ -78,16 +79,16 @@ const Auth=(props) =>{
                                   <span>{formik.errors.password}</span>
                                   :null
 
-                                }
+                   
+                  
+                             }
                         </div>
 
-                  
-                
 
                     
-                        <button  className="btn btn-success btn-block mb-4">{register ?'Register':'Login'}</button>
-                        <button  className="btn btn-primary btn-block  mb-4" OnClick={()=>setRegister(!register)}>Want to {!register?'Register':'Login'}</button>
-                       
+                        <button  className="btn btn-success btn-block ">{register ?'Register':'Login'}</button>
+                        <button className="btn btn-primary btn-block" t style={{margin:'50px'}} onClick={()=>{setRegister(!register)}} >Want to { !register? 'Register':'Login'}</button>
+                        
                      
                       </div>  
                     </form>
