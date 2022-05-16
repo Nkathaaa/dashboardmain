@@ -3,7 +3,7 @@ const DEFAULT_STORE={
     userId:1234
 }
 
-export default function(state={DEFAULT_STORE},action){
+export default function appReducer(state={DEFAULT_STORE},action){
 
     switch(action.type){
         case "USERS_LIST":
