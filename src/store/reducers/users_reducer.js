@@ -1,4 +1,9 @@
-export default function(state={},action){
+const DEFAULT_STORE={
+    userName:"Francis",
+    userId:1234
+}
+
+export default function(state={DEFAULT_STORE},action){
 
     switch(action.type){
         case "USERS_LIST":
