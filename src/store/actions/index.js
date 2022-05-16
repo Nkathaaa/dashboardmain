@@ -9,3 +9,16 @@ export const userslist=()=>{
         ]
     }
 }
+
+export const movielist=()=>{
+    return{
+        type:"MOVIES_DATA",
+        payload:[
+            {
+                id:3586
+                name:"pulp Fiction"
+                actors:['Travolta','Deniro']
+            }
+        ]
+    }
+}

@@ -6,15 +6,29 @@ class Home extends Component {
       this.props.dispatch(userslist())
     }
   render() {
- 
-      
+   console.log(this.props)
+     const { users }=this.props ;
     return (
     
       <>
+      { users && users.userslist ?
+      users.userslist.map(item=>(
+        <div key={item.name}>
+          name:{item.name}
+          </div>
+      ))
+      :
+      null
+      
+      }
        <button  onClick={()=>this.getUsers()}>get users </button>
       </>
     )
   }
 }
-export default connect()(Home);
+const mapStateToProps=(state)=>{
+  return{wholestate:state.users}
+
+}
+export default connect(mapStateToProps)(Home);
 //injects props on home component
