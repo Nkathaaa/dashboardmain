@@ -31,9 +31,10 @@ const Auth=(props) =>{
     })
   return (
     <>
-      <div className="auth_container">
+      
         
                     <form onSubmit={formik.handleSubmit}>
+                   {register ?
                     <div className="container">
                         <div className="row mb-4">
                             <div className="col">
@@ -85,16 +86,55 @@ const Auth=(props) =>{
                         </div>
 
 
+                        </div> 
+
+
+
+                            :
+
+
+
+
+                            <div className="container">
+                       
+
+                        <div className="form-outline mb-4">
+                        <label className="form-label" for="form3Example3">Email address</label>
+                            <input type="email" id="form3Example3" className="form-control"  name="emailAddress"  {...formik.getFieldProps('emailAddress')}/>
+                            { formik.errors.emailAddress && formik.touched.emailAddress?
+                                  <span>{formik.errors.emailAddress}</span>
+                                  :null
+
+                                }          
                     
+                        </div>
+
+                        <div className="form-outline mb-4">
+                        <label className="form-label" for="form3Example4">Password</label>
+                            <input type="password" id="form3Example4" className="form-control"  name="password" {...formik.getFieldProps('password')} />
+                            { formik.errors.password && formik.touched.password?
+                                  <span>{formik.errors.password}</span>
+                                  :null
+
+                   
+                  
+                             }
+                        </div>
+
+
+                        </div> 
+
+                            }
+
                         <button  className="btn btn-success btn-block ">{register ?'Register':'Login'}</button>
                         <button className="btn btn-primary btn-block" t style={{margin:'50px'}} onClick={()=>{setRegister(!register)}} >Want to { !register? 'Register':'Login'}</button>
                         
-                     
-                      </div>  
+                            
+                       
                     </form>
                                 
                     
-        </div>
+       
     </>
   )
 }
