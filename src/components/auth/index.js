@@ -9,7 +9,6 @@ const Auth=(props) =>{
         validationSchema:Yup.object({
             firstName:Yup
             .string()
-            .required("Sorry the Name is required")
             .max(12,"Sorry,the name is too long"),
             lastName:Yup
             .string(),
@@ -126,9 +125,10 @@ const Auth=(props) =>{
 
                             }
 
+                       <div class="container">
                         <button  className="btn btn-success btn-block ">{register ?'Register':'Login'}</button>
                         <button className="btn btn-primary btn-block" t style={{margin:'50px'}} onClick={()=>{setRegister(!register)}} >Want to { !register? 'Register':'Login'}</button>
-                        
+                       </div> 
                             
                        
                     </form>
