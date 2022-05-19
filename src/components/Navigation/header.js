@@ -1,6 +1,21 @@
-import React from 'react'
+import React,{ useEffect} from 'react';
+import { showToast } from "../../utils/tools";
 
-function Header() {
+import { useSelector } from "react-redux";
+const Header=(props)=> {
+ const notifications=useSelector(state=>state.notifications)  
+ useEffect(()=>{
+   if(notifications && notifications.error){
+  const msg=notifications.msg ?notifications.msg:"Error";
+  showToast('ERROR',msg);
+   }
+   if(notifications && notifications.success){
+    const msg=notifications.msg ?notifications.msg:"Error";
+    showToast('SUCCESS',msg);
+     }
+
+ },[notifications])
+
   return (
     <div>
 

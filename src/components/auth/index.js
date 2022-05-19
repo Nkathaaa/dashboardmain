@@ -29,13 +29,14 @@ const Auth=(props) =>{
         onSubmit:(values,{resetForm})=>{
           
             handleSubmit(values)
+          
         }
 
         }); 
         const handleSubmit = (values) =>{
             if (register){
               
-
+            
                 dispatch(registerUser(values))
 
             }else{

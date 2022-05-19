@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { toast } from 'react-toastify';
 
-const showToast(type,msg) {
-  return (
-    <>
+export const showToast=(type,msg)=> {
+  
       switch(type){
         case "SUCCESS":
             toast.success(msg, {
@@ -15,14 +14,14 @@ const showToast(type,msg) {
                 position: toast.POSITION.TOP_LEFT
               });
         break;
-        default
+        default:
               return false
 
 
       }
 
-    </>
-  )
+  
+  
 }
 
-export default showToast
+

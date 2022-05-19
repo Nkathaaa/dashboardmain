@@ -12,9 +12,8 @@ let DEFAULT_USER_STATE = {
         lastname:'',
         password:'' 
     },
-    auth:null
+    auth:''
 }
-
 
 export default function usersReducer(state=DEFAULT_USER_STATE,action){
     switch(action.type){
