@@ -1,25 +1,29 @@
-import {
-    USERS_LIST,
-    GET_USERS,
-    MOVIES_DATA
-} from "../types.js"
 
-const DEFAULT_STORE={
-    userName:"Francis",
-    userId:1234
+
+import {
+    AUTH_USER
+} from '../types';
+
+let DEFAULT_USER_STATE = {
+    data: {
+        _id: '',
+        email: '',
+        firstname:'',
+        lastname:'',
+        password:'' 
+    },
+    auth:null
 }
 
-export default function appReducer(state={DEFAULT_STORE},action){
 
+export default function usersReducer(state=DEFAULT_USER_STATE,action){
     switch(action.type){
-        case USERS_LIST:
-            return {...state,userList:action.payload}
-        case MOVIES_DATA:
-            return { ...state,movieData:action.payload}
-        case GET_USERS:
-            return { ...state,usersls:action.payload}   
-         default :
-            return state 
+        case AUTH_USER:
+            return { ...state,
+                data: { ...state.data, ...action.payload.data},
+                auth: action.payload.auth
+            }
+        default:
+            return state
     }
-
 }

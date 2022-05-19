@@ -1,9 +1,11 @@
-import React from 'react'
-import users from "./users_reducer"
-import { combineReducers } from "redux";
- const rootReducer=combineReducers({
-  users
-  })
+import { combineReducers } from 'redux';
+import users from './users_reducer.js';
 
 
-export default  rootReducer
+const rootReducer = combineReducers({
+  
+    users
+   
+});
+
+export default rootReducer;

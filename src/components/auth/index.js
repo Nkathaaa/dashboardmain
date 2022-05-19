@@ -1,12 +1,14 @@
 import React,{useState} from 'react'
 import {useDispatch,useSelector} from "react-redux"
+import { registerUser } from "../../store/actions/users_actions"
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const Auth=(props) =>{
     const [register,setRegister]=useState(false)
+    const dispatch=useDispatch()
     const formik=useFormik({
-        initialValues:{firstName:'',lastName:'',emailAddress:'',password:''},
+        initialValues:{emailAddress:'',password:''},
         validationSchema:Yup.object({
             firstName:Yup
             .string()
@@ -25,13 +27,16 @@ const Auth=(props) =>{
            
         }),
         onSubmit:(values,{resetForm})=>{
-            
+          
             handleSubmit(values)
         }
 
         }); 
         const handleSubmit = (values) =>{
             if (register){
+              
+
+                dispatch(registerUser(values))
 
             }else{
 
