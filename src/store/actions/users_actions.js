@@ -20,4 +20,20 @@ export const registerUser = (values) => {
     }
 }
 
+export const signInUser=(values)=>{
+    return async(dispatch)=>{
+        try{
+            const user=await axios.post(``,{
+               email:values.email,
+               password:values.password
+            });
+           console.log(values)
+            dispatch(users.signUser({data:user.data,auth:true}))
 
+        }catch(error){
+
+        }
+    }
+
+
+}

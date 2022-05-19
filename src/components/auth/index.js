@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {useDispatch,useSelector} from "react-redux"
-import { registerUser } from "../../store/actions/users_actions"
+import { registerUser,signInUser } from "../../store/actions/users_actions"
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -39,10 +39,17 @@ const Auth=(props) =>{
                 dispatch(registerUser(values))
 
             }else{
-
+                dispatch(signInUser(values))
+           
+               
             }
 
         }
+      //  useEffect(()=>{
+      //      if(notifications && notifications.success){
+       //         props.history.push('/dashboard')
+      //      }
+      //  },[notifications,props.history])
     
   return (
     <>

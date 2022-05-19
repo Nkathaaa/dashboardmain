@@ -1,6 +1,7 @@
 import React from 'react'
-import { BrowserRouter, Route, Link } from 'react-router-dom';
 import  Header from "../components/Navigation/header.js"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
  const MainLayout=(props)=> (
    <>
@@ -8,6 +9,7 @@ import  Header from "../components/Navigation/header.js"
    <Header/>
    <>
      {props.children}
+     <ToastContainer/>
    </>
 
    </>
