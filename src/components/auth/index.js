@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import {useDispatch,useSelector} from "react-redux"
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -20,14 +21,24 @@ const Auth=(props) =>{
             .string()
             .required("Sorry the Name is required")  
             .min(8,"Sorry,the name is too short"),
-            
 
-        }), 
-        onSubmit:values=>{
-            console.log(values)
+           
+        }),
+        onSubmit:(values,{resetForm})=>{
+            
+            handleSubmit(values)
+        }
+
+        }); 
+        const handleSubmit = (values) =>{
+            if (register){
+
+            }else{
+
+            }
 
         }
-    })
+    
   return (
     <>
       
@@ -125,7 +136,7 @@ const Auth=(props) =>{
 
                             }
 
-                       <div class="container">
+                       <div className="container">
                         <button  className="btn btn-success btn-block ">{register ?'Register':'Login'}</button>
                         <button className="btn btn-primary btn-block" t style={{margin:'50px'}} onClick={()=>{setRegister(!register)}} >Want to { !register? 'Register':'Login'}</button>
                        </div> 
