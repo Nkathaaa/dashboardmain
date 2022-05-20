@@ -1,12 +1,16 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {useDispatch,useSelector} from "react-redux"
 import { registerUser,signInUser } from "../../store/actions/users_actions"
-import { useFormik } from 'formik';
+
+import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';   
 import * as Yup from 'yup';
 
 const Auth=(props) =>{
     const [register,setRegister]=useState(false)
+    const notifications=useSelector(state=>state.notifications)
     const dispatch=useDispatch()
+    const navigate=useNavigate()
     const formik=useFormik({
         initialValues:{emailAddress:'',password:''},
         validationSchema:Yup.object({
@@ -36,8 +40,8 @@ const Auth=(props) =>{
         const handleSubmit = (values) =>{
             if (register){
               
-            
-                dispatch(registerUser(values))
+               
+dispatch(registerUser(values))
 
             }else{
                 dispatch(signInUser(values))
@@ -46,11 +50,11 @@ const Auth=(props) =>{
             }
 
         }
-      //  useEffect(()=>{
-      //      if(notifications && notifications.success){
-       //         props.history.push('/dashboard')
-      //      }
-      //  },[notifications,props.history])
+       useEffect(()=>{
+           if(notifications && notifications.success){
+            navigate('/home');
+           }
+       },[notifications,props.history])
     
   return (
     <>
