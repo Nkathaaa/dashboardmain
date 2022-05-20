@@ -52,7 +52,7 @@ const Auth=(props) =>{
            if(notifications && notifications.success){
                const msg=notifications.msg ? notifications.msg:"Success";
                showToast("SUCCESS",msg)
-               navigate('/home');
+              
                dispatch(clearNotifications())
            }
            if(notifications && notifications.error){
@@ -66,7 +66,7 @@ const Auth=(props) =>{
     <>
       
         
-                    <form onSubmit={formik.handleSubmit}>
+                    <form onSubmit={formik.handleSubmit} style={{marginTop: "120px"}} >
                    {register ?
                     <div className="container">
                         <div className="row mb-4">

@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
  const MainLayout=(props)=> (
    <>
 
-   <Header/>
+  
    <>
      {props.children}
      <ToastContainer/>
