@@ -2,7 +2,8 @@ import {
     AUTH_USER,
     SIGN_USER,
     ERROR_GLOBAL,
-    SUCCESS_GLOBAL
+    SUCCESS_GLOBAL,
+    CLEAR_NOTIFICATION
 
 } from '../types';
 
@@ -29,3 +30,13 @@ export const successGlobal=(msg)=>({
     type:SUCCESS_GLOBAL,
     payload:msg
 })
+
+export const clearNotifications=()=>{
+    return(dispatch)=>{
+        dispatch({
+            type:CLEAR_NOTIFICATION
+
+        })
+    }
+    
+}

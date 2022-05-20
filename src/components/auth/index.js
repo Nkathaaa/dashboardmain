@@ -1,8 +1,9 @@
 import React,{useState,useEffect} from 'react'
 import {useDispatch,useSelector} from "react-redux"
 import { registerUser,signInUser } from "../../store/actions/users_actions"
-
+import { clearNotifications } from "../../store/actions/index"
 import { useNavigate } from 'react-router-dom';
+import { showToast } from "../../utils/tools"
 import { useFormik } from 'formik';   
 import * as Yup from 'yup';
 
@@ -30,18 +31,15 @@ const Auth=(props) =>{
 
            
         }),
-        onSubmit:(values,{resetForm})=>{
-          
-            handleSubmit(values)
-          
+        onSubmit:(values,{resetForm})=>{  
+            handleSubmit(values) 
         }
 
         }); 
         const handleSubmit = (values) =>{
             if (register){
+              dispatch(registerUser(values))
               
-               
-dispatch(registerUser(values))
 
             }else{
                 dispatch(signInUser(values))
@@ -52,7 +50,15 @@ dispatch(registerUser(values))
         }
        useEffect(()=>{
            if(notifications && notifications.success){
-            navigate('/home');
+               const msg=notifications.msg ? notifications.msg:"Success";
+               showToast("SUCCESS",msg)
+               navigate('/home');
+               dispatch(clearNotifications())
+           }
+           if(notifications && notifications.error){
+               const msg=notifications.msg ? notifications.msg:"Error"
+               showToast("ERROR",msg)
+               dispatch(clearNotifications())
            }
        },[notifications,props.history])
     

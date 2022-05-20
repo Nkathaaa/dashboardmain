@@ -14,7 +14,7 @@ export const registerUser = (values) => {
             // console.log(user)
             //dispatch(users.authUser({data: user.data, auth: true }))
            console.log(values)
-           dispatch(users.successGlobal("This is working"))
+           dispatch(users.successGlobal("user registered"))
         } catch(error){
             dispatch(users.errorGlobal("This is "))
         }
@@ -32,7 +32,7 @@ export const signInUser=(values)=>{
            // dispatch(users.signUser({data:user.data,auth:true}))
 
         }catch(error){
-            dispatch(users.errorGlobal("This is "))
+            dispatch(users.errorGlobal("This is an error"))
 
         }
     }

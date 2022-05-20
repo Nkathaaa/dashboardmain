@@ -3,18 +3,18 @@ import { showToast } from "../../utils/tools";
 
 import { useSelector } from "react-redux";
 const Header=(props)=> {
- const notifications=useSelector(state=>state.notifications)  
- useEffect(()=>{
-   if(notifications && notifications.error){
-  const msg=notifications.msg ?notifications.msg:"Error";
-  showToast('ERROR',msg);
-   }
-   if(notifications && notifications.success){
-    const msg=notifications.msg ?notifications.msg:"Error";
-    showToast('SUCCESS',msg);
-     }
+// const notifications=useSelector(state=>state.notifications)  
+ //useEffect(()=>{
+   //if(notifications && notifications.error){
+  //const msg=notifications.msg ?notifications.msg:"Error";
+ // showToast('ERROR',msg);
+   //}
+   //if(notifications && notifications.success){
+    //const msg=notifications.msg ?notifications.msg:"Error";
+    //showToast('SUCCESS',msg);
+    // }
 
- },[notifications])
+ //},[notifications])
 
   return (
     <div>
