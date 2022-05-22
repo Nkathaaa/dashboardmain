@@ -1,0 +1,34 @@
+import {
+    AUTH_USER,
+    SIGN_USER
+
+} from '../types';
+
+let DEFAULT_USER_STATE = {
+    data: {
+        _id: '',
+        email: '',
+        firstname:'',
+        lastname:'',
+        password:'' 
+    },
+    auth:''
+}
+
+export default function usersReducer(state=DEFAULT_USER_STATE,action){
+    switch(action.type){
+        case AUTH_USER:
+            return { ...state,
+                data: { ...state.data, ...action.payload.data},
+                auth: action.payload.auth
+            }
+        case SIGN_USER:
+            return{...state,
+                data:{...state.data,...action.payload.data},
+                auth:action.payload.auth
+
+            }    
+        default:
+            return state
+    }
+}
