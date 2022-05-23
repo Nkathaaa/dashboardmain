@@ -38,7 +38,7 @@ const Header = (props) => {
         </Toolbar>
       </AppBar>
     </Box>
-                <SideDrawer/>
+            
             </nav>
         </>
     )

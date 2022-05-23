@@ -5,8 +5,7 @@ import Header from "../Navigation/header"
 const Dashboard=()=> {
   return (
     <div>
-        <Header/>
-        <SideDrawer/>
+       
        </div>
   )
 }

@@ -1,6 +1,7 @@
 import {
     AUTH_USER,
-    SIGN_USER
+    SIGN_USER,
+    ISUSER_AUTH
 
 } from '../types';
 
@@ -26,8 +27,7 @@ export default function usersReducer(state=DEFAULT_USER_STATE,action){
             return{...state,
                 data:{...state.data,...action.payload.data},
                 auth:action.payload.auth
-
-            }    
+            }   
         default:
             return state
     }

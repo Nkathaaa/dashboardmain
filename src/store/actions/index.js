@@ -3,7 +3,8 @@ import {
     SIGN_USER,
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
-    CLEAR_NOTIFICATION
+    CLEAR_NOTIFICATION,
+    ISUSER_AUTH
 
 } from '../types';
 
@@ -18,6 +19,11 @@ export const signUser=(user)=>({
     payload:user
 });
 
+export const isUserAuth=(user)=>({
+    type:ISUSER_AUTH,
+    payload:user
+    
+})
 
 ////notifications////
 

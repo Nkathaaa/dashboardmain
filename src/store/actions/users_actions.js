@@ -1,6 +1,7 @@
 import * as users from "./index";
 import axios from "axios";
 import endpoint from "../../services/endpoint";
+import { getAuthHeader,getTokenCookie } from "../../utils/tools"
 
 // axios.defaults.headers.post["Content-Type"] = "application/json";
 
@@ -22,8 +23,8 @@ export const registerUser = (values) => {
 };
 
 export const signInUser = (values) => {
-  return async (dispatch) => {
-    try {
+  //return async (dispatch) => {
+   // try {
       // const user=await axios.post(``,{
       //  email:values.email,
       //  password:values.password
@@ -31,18 +32,37 @@ export const signInUser = (values) => {
       // console.log(values)
       // dispatch(users.signUser({data:user.data,auth:true}))
 
-      endpoint.get("/sanctum/csrf-cookie").then(() => {
-        endpoint
-          .post("/api/login", {
-            email: values.email,
-            password: values.password,
-          })
-          .then((response) => {
-            console.log(response.data);
-          });
-      });
-    } catch (error) {
-      dispatch(users.errorGlobal("This is an error"));
-    }
-  };
-};
+     // endpoint.get("/sanctum/csrf-cookie").then(() => {
+      //  endpoint
+      //    .post("/api/login", {
+      //      email: values.email,
+      //      password: values.password,
+      //    })
+       //   .then((response) => {
+       //     console.log(response.data);
+      //    });
+     // });
+   // } catch (error) {
+   //   dispatch(users.errorGlobal("This is an error"));
+   // }
+  //};
+//};
+    };
+
+
+ export const isAuthUser=()=>{
+   return async(dispatch)=>{
+     try{
+       if(!getTokenCookie){
+         throw new Error();
+       }
+     const user=await axios.get(`/api/userAuth`,getAuthHeader())
+     dispatch(users.isUserAuth({data:user.data,auth:true}))
+     }catch(error){
+       dispatch(users.isUserAuth({data:{},auth:false}))
+
+     }
+
+   }
+
+ }   
