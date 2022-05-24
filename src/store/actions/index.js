@@ -4,7 +4,8 @@ import {
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
     CLEAR_NOTIFICATION,
-    ISUSER_AUTH
+    ISUSER_AUTH,
+    LAYOUT
 
 } from '../types';
 
@@ -46,3 +47,11 @@ export const clearNotifications=()=>{
     }
     
 }
+
+///////site////
+export const appLayout=(layout)=>({
+    type:LAYOUT,
+    payload:layout
+})
+
+

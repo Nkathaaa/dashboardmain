@@ -1,6 +1,5 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { Link, withRouter } from 'react-router-dom';
-
 import SideDrawer from './sideDrawer';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,8 +8,30 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import { useLocation } from 'react-router-dom';
+import { setLayout } from "../../store/actions/site_actions";
+import {useDispatch,useSelector} from "react-redux";
 
 const Header = (props) => {
+    const [layout,setTheLayout]=useState('');
+    const users=useSelector(state=>state.users)
+    const location = useLocation();
+    let dispatch=useDispatch()
+     console.log(location)
+
+     useEffect(()=>{
+       //I need to split the location data
+       let patharray=location
+       if( patharray[1]==="dashboard"){
+        dispatch(setLayout('dash_layout'))
+     }else{
+       setTheLayout('')
+       dispatch(setLayout(''))
+     }
+
+       
+
+     },[location,dispatch])
 
     return(
         <>  
