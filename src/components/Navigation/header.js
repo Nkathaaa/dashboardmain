@@ -11,14 +11,22 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useLocation } from 'react-router-dom';
 import { setLayout } from "../../store/actions/site_actions";
 import {useDispatch,useSelector} from "react-redux";
+import {  signOut } from "../../store/actions/users_actions"
+import { useNavigate } from 'react-router-dom';
 
 const Header = (props) => {
     const [layout,setTheLayout]=useState('');
     const users=useSelector(state=>state.users)
     const location = useLocation();
+    const navigate=useNavigate()
     let dispatch=useDispatch()
      console.log(location)
 
+     const signOutUser =()=>{
+       dispatch(signOut())
+       navigate('/auth')
+       
+     }
      useEffect(()=>{
        //I need to split the location data
        let patharray=location

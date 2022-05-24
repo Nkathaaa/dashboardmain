@@ -5,7 +5,8 @@ import {
     SUCCESS_GLOBAL,
     CLEAR_NOTIFICATION,
     ISUSER_AUTH,
-    LAYOUT
+    LAYOUT,
+    SIGNOUT
 
 } from '../types';
 
@@ -25,6 +26,11 @@ export const isUserAuth=(user)=>({
     payload:user
     
 })
+export const signUserOut=(user)=>({
+    type:SIGNOUT,
+    payload:user
+})
+
 
 ////notifications////
 

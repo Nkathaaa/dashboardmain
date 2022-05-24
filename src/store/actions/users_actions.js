@@ -1,7 +1,7 @@
 import * as users from "./index";
 import axios from "axios";
 import endpoint from "../../services/endpoint";
-import { getAuthHeader,getTokenCookie } from "../../utils/tools"
+import { getAuthHeader,getTokenCookie,removeTokenCookie } from "../../utils/tools"
 
 // axios.defaults.headers.post["Content-Type"] = "application/json";
 
@@ -15,6 +15,9 @@ export const registerUser = (values) => {
       // console.log(user)
       //dispatch(users.authUser({data: user.data, auth: true }))
       console.log(values);
+      
+      //dispatch the success toast,the users.successGlobal refers to the funtions under the action type
+      //ie for users its users-actions
       dispatch(users.successGlobal("user registered"));
     } catch (error) {
       dispatch(users.errorGlobal("This is "));
@@ -66,3 +69,10 @@ export const signInUser = (values) => {
    }
 
  }   
+
+ export const signOut= () => {
+  return async (dispatch) => {
+      removeTokenCookie();
+      dispatch(users.signUserOut())
+  }
+}
