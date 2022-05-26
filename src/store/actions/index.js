@@ -3,7 +3,10 @@ import {
     SIGN_USER,
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
-    CLEAR_NOTIFICATION
+    CLEAR_NOTIFICATION,
+    ISUSER_AUTH,
+    LAYOUT,
+    SIGNOUT
 
 } from '../types';
 
@@ -17,6 +20,16 @@ export const signUser=(user)=>({
     type:SIGN_USER,
     payload:user
 });
+
+export const isUserAuth=(user)=>({
+    type:ISUSER_AUTH,
+    payload:user
+    
+})
+export const signUserOut=(user)=>({
+    type:SIGNOUT,
+    payload:user
+})
 
 
 ////notifications////
@@ -40,3 +53,11 @@ export const clearNotifications=()=>{
     }
     
 }
+
+///////site////
+export const appLayout=(layout)=>({
+    type:LAYOUT,
+    payload:layout
+})
+
+

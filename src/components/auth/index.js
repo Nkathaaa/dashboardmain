@@ -39,6 +39,7 @@ const Auth=(props) =>{
         const handleSubmit = (values) =>{
             if (register){
               dispatch(registerUser(values))
+              navigate("/dashboard")
               
 
             }else{
