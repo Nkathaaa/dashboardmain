@@ -12,27 +12,27 @@ import Loader  from "./utils/loader"
  
 function Router() {
        //check if user is logged in
-   const [loading,setLoading]=useState(true)
+  // const [loading,setLoading]=useState(true)
    const users=useSelector(state=>state.users)
    const dispatch=useDispatch()
    useEffect(()=>{
      dispatch(isAuthUser())
    },[dispatch])
 
-   useEffect(()=>{
+   {/*useEffect(()=>{
        if(users.auth !==null){
            setLoading(false)
 
        }
    }
        
-   )
+   ) */}
   return (
     <BrowserRouter>
      <Header/>
-     {loading ?
+     {/*{loading ?
         <Loader/>
-        :
+     : */}
       <MainLayout>
         <Routes>
             <Route path="/dashboard" element={<Dashboard />}/>
@@ -41,7 +41,7 @@ function Router() {
             <Route path="/" element={<Auth />}/>
         </Routes>
      </MainLayout>
-}
+{/*} */}
   </BrowserRouter>
   )
 }

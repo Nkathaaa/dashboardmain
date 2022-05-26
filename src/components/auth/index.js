@@ -1,15 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import {useDispatch,useSelector} from "react-redux"
 import { registerUser,signInUser } from "../../store/actions/users_actions"
-import { clearNotifications } from "../../store/actions/index"
 import { useNavigate } from 'react-router-dom';
-import { showToast } from "../../utils/tools"
 import { useFormik } from 'formik';   
 import * as Yup from 'yup';
 
 const Auth=(props) =>{
     const [register,setRegister]=useState(false)
-    const notifications=useSelector(state=>state.notifications)
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const formik=useFormik({
@@ -49,25 +46,11 @@ const Auth=(props) =>{
             }
 
         }
-       useEffect(()=>{
-           if(notifications && notifications.success){
-               const msg=notifications.msg ? notifications.msg:"Success";
-               showToast("SUCCESS",msg)
-              
-               dispatch(clearNotifications())
-           }
-           if(notifications && notifications.error){
-               const msg=notifications.msg ? notifications.msg:"Error"
-               showToast("ERROR",msg)
-               dispatch(clearNotifications())
-           }
-       },[notifications,props.history])
+    
     
   return (
     <>
-      
-        
-                    <form onSubmit={formik.handleSubmit} style={{marginTop: "120px"}} >
+             <form onSubmit={formik.handleSubmit} style={{marginTop: "120px"}} >
                    {register ?
                     <div className="container">
                         <div className="row mb-4">

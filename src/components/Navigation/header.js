@@ -12,9 +12,13 @@ import { useLocation } from 'react-router-dom';
 import { setLayout } from "../../store/actions/site_actions";
 import {useDispatch,useSelector} from "react-redux";
 import {  signOut } from "../../store/actions/users_actions"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+import { clearNotifications } from "../../store/actions/index";
+import { showToast } from "../../utils/tools"
+
 
 const Header = (props) => {
+  const notifications=useSelector(state=>state.notifications)
     const [layout,setTheLayout]=useState('');
     const users=useSelector(state=>state.users)
     const location = useLocation();
@@ -22,11 +26,11 @@ const Header = (props) => {
     let dispatch=useDispatch()
      console.log(location)
 
-     const signOutUser =()=>{
-       dispatch(signOut())
-       navigate('/auth')
+     //const signOutUser =()=>{
+     //  dispatch(signOut())
+       //navigate('/auth')
        
-     }
+    // }
      useEffect(()=>{
        //I need to split the location data
        let patharray=location
@@ -41,34 +45,52 @@ const Header = (props) => {
 
      },[location,dispatch])
 
+     useEffect(()=>{
+      if(notifications && notifications.success){
+          const msg=notifications.msg ? notifications.msg:"Success";
+          showToast("SUCCESS",msg)
+         
+          dispatch(clearNotifications())
+      }
+      if(notifications && notifications.error){
+          const msg=notifications.msg ? notifications.msg:"Error"
+          showToast("ERROR",msg)
+          dispatch(clearNotifications())
+      }
+  },[notifications,props.history])
+
     return(
         <>  
             <nav className="navbar fixed-top">
-                <div 
-                    className="navbar-brand d-flex align-items-center"
-                >
+                <div  className="navbar-brand d-flex align-items-center">
                 </div>
-                <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <DashboardIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Polls
-          </Typography>
-          
-        </Toolbar>
-      </AppBar>
-    </Box>
+                
+                        <Box sx={{ flexGrow: 1 }}>
+                          <AppBar position="static">
+                            <Toolbar>
+                              <IconButton
+                                size="large"
+                                edge="start"
+                                color="inherit"
+                                aria-label="menu"
+                                sx={{ mr: 2 }}
+                              >
+                                <DashboardIcon />
+                              </IconButton>
+                              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                Polls
+                              </Typography>
+                              
+                            </Toolbar>
+                          </AppBar>
+                        </Box>
+   
             
             </nav>
+
+
+            {/*}<SideDrawer signOutUser={signOutUser()}/>*/}
+            <SideDrawer />
         </>
     )
 }
