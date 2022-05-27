@@ -9,7 +9,11 @@ import {isAuthUser} from "./store/actions/users_actions"
 import { useSelector,useDispatch} from "react-redux"
 import{ useEffect,useState} from 'react'
 import Loader  from "./utils/loader"
- 
+import GuardAccess from "./Hoc/guardAccess"
+
+
+
+
 function Router() {
        //check if user is logged in
   // const [loading,setLoading]=useState(true)
@@ -29,13 +33,14 @@ function Router() {
    ) */}
   return (
     <BrowserRouter>
-     <Header/>
+  
      {/*{loading ?
         <Loader/>
      : */}
       <MainLayout>
         <Routes>
-            <Route path="/dashboard" element={<Dashboard />}/>
+       
+            <Route path="/dashboard" element={GuardAccess(Dashboard)}/>
             <Route path="/home" element={<Home />}/>
             <Route path="/auth" element={<Auth />}/>
             <Route path="/" element={<Auth />}/>
