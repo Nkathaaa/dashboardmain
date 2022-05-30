@@ -10,7 +10,9 @@ import { useSelector,useDispatch} from "react-redux"
 import{ useEffect,useState} from 'react'
 import Loader  from "./utils/loader"
 import GuardAccess from "./Hoc/guardAccess"
-
+import  SignOutContainer from "./containers/index"
+import Login from "./components/login"
+import SignUp from "./components/signup"
 
 
 
@@ -39,7 +41,10 @@ function Router() {
      : */}
       <MainLayout>
         <Routes>
-       
+           
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+           <Route path="/signout" element={<SignOutContainer/>}/>
             <Route path="/dashboard" element={GuardAccess(Dashboard)}/>
             <Route path="/home" element={<Home />}/>
             <Route path="/auth" element={<Auth />}/>
