@@ -1,14 +1,19 @@
 import React,{useState,useEffect} from 'react'
+import { Grid,Paper,TextField,Button,Typography,Link } from "@mui/material"
 import {useDispatch,useSelector} from "react-redux"
+import FormControlLabel from '@mui/material/FormControlLabel'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Avatar from '@mui/material/Avatar';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';   
 import * as Yup from 'yup';
+import Checkbox from '@mui/material/Checkbox';
 
 const SignUp=(props) =>{
     const [register,setRegister]=useState(false)
     const dispatch=useDispatch()
 
-    const formik=useFormik({
+    /*const formik=useFormik({
         initialValues:{emailAddress:'',password:''},
         validationSchema:Yup.object({
             firstName:Yup
@@ -36,77 +41,37 @@ const SignUp=(props) =>{
        
 
         }
-    
+    */
+        const paperStyle = { padding: 20, width: 400, margin: "0 auto" }
+        const headerStyle = { margin: 0 }
+        const avatarStyle = { backgroundColor: 'green' }
+        const marginTop = { marginTop: 5 }
     
   return (
     <>
-             <form onSubmit={formik.handleSubmit} style={{marginTop: "120px"}} >
-                
-                    <div className="container">
-                        <div className="row mb-4">
-                            <div className="col">
-                            <div className="form-outline">
-                            <label className="form-label" for="form3Example1">First name</label>
-                                <input type="text" id="form3Example1" className="form-control" name="firstName"  {...formik.getFieldProps('firstName')}/>
-                                { formik.errors.firstName && formik.touched.firstName?
-                                  <span>{formik.errors.firstName}</span>
-                                  :null
-
-                                }
-                               
-                            </div>
-                            </div>
-                            <div className="col">
-                            <label className="form-label" for="form3Example2">Last name</label>
-                            <div className="form-outline">
-                                <input type="text" id="form3Example2" className="form-control"  name="lastName"  {...formik.getFieldProps('lastName')}/>
-                                { formik.errors.lastName && formik.touched.lastName?
-                                  <span>{formik.errors.lastName}</span>
-                                  :null
-
-                                }
-                            </div>
-                            </div>
-                        </div>
-
-                        <div className="form-outline mb-4">
-                        <label className="form-label" for="form3Example3">Email address</label>
-                            <input type="email" id="form3Example3" className="form-control"  name="emailAddress"  {...formik.getFieldProps('emailAddress')}/>
-                            { formik.errors.emailAddress && formik.touched.emailAddress?
-                                  <span>{formik.errors.emailAddress}</span>
-                                  :null
-
-                                }          
-                    
-                        </div>
-
-                        <div className="form-outline mb-4">
-                        <label className="form-label" for="form3Example4">Password</label>
-                            <input type="password" id="form3Example4" className="form-control"  name="password" {...formik.getFieldProps('password')} />
-                            { formik.errors.password && formik.touched.password?
-                                  <span>{formik.errors.password}</span>
-                                  :null
-
-                   
-                  
-                             }
-                        </div>
-
-
-                        </div> 
-
-
-
-                          
-
-                       <div className="container">
-                        <button  className="btn btn-success btn-block ">Register</button>
-                   
-                       </div>   
-                            
-                       
-                    </form>
-                                
+                    <Grid>
+            <Paper style={paperStyle}>
+                <Grid align='center'>
+                    <Avatar style={avatarStyle}>
+                        <AddCircleIcon />
+                    </Avatar>
+                    <h2 style={headerStyle}>Sign Up</h2>
+                    <Typography variant='caption' gutterBottom>Please fill this form to create an account !</Typography>
+                </Grid>
+                <form>
+                    <TextField fullWidth label='Name' variant="standard" placeholder="Enter your name" />
+                    <TextField fullWidth label='Email'  variant="standard" placeholder="Enter your email" />
+                    <TextField fullWidth label='Phone Number' variant="standard" placeholder="Enter your phone number" />
+                    <TextField fullWidth label='Password'  variant="standard" placeholder="Enter your password"/>
+                    <TextField fullWidth label='Confirm Password'variant="standard"  placeholder="Confirm your password"/>
+                    <FormControlLabel
+                        control={<Checkbox name="checkedA" />}
+                        label="I accept the terms and conditions."
+                    />
+                    <Button type='submit' variant='contained' color='success'>Sign up</Button>
+                </form>
+            </Paper>
+        </Grid>
                     
        
     </>

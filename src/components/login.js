@@ -1,11 +1,14 @@
 import React,{useState,useEffect} from 'react'
+import { Grid,Paper,TextField,Button,Typography,Link } from "@mui/material"
 import {useDispatch,useSelector} from "react-redux"
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';   
 import * as Yup from 'yup';
+import Avatar from '@mui/material/Avatar';
+import LockIcon from '@mui/icons-material/Lock';
 
 const Login=(props) =>{
-    const [register,setRegister]=useState(false)
+  /* const [register,setRegister]=useState(false)
     const dispatch=useDispatch()
 
     const formik=useFormik({
@@ -35,55 +38,34 @@ const Login=(props) =>{
         const handleSubmit = (values) =>{
        
 
-        }
+    // */
     
     
+    const paperStyle={ padding:20,height:'70vh',width:350,margin:"20px auto"}
+    const avatarStyle={backgroundColor:"green"}
   return (
     <>
-             <form onSubmit={formik.handleSubmit} style={{marginTop: "120px"}} >
-        
+         <Grid>
+            <Paper style={paperStyle}>
+            <Grid align="center">
+                <Avatar style={avatarStyle}>
+                    <LockIcon/>
+                </Avatar>
+                <h2>   Sign In </h2>
+             </Grid> 
+             <TextField  TextField id="standard-basic" variant="standard" label="Email" placeholder="Enter Username" fullWidth required/>
+            
+             <TextField  TextField id="standard-basic" variant="standard" type="password" label="Password" placeholder="Enter Username" fullWidth required/>
+             
+             <Button  sx={{marginTop:3,backgroundColor:"green" ,marginBottom:1}}variant="contained" fullWidth >Login</Button>
+             <Typography variant="h6">Do you have an account?
+             <Link href="#">Sign Up</Link>
+             </Typography>
+             </Paper>   
 
+            </Grid>
 
-
-
-                            <div className="container">
-                       
-
-                        <div className="form-outline mb-4">
-                        <label className="form-label" for="form3Example3">Email address</label>
-                            <input type="email" id="form3Example3" className="form-control"  name="emailAddress"  {...formik.getFieldProps('emailAddress')}/>
-                            { formik.errors.emailAddress && formik.touched.emailAddress?
-                                  <span>{formik.errors.emailAddress}</span>
-                                  :null
-
-                                }          
-                    
-                        </div>
-
-                        <div className="form-outline mb-4">
-                        <label className="form-label" for="form3Example4">Password</label>
-                            <input type="password" id="form3Example4" className="form-control"  name="password" {...formik.getFieldProps('password')} />
-                            { formik.errors.password && formik.touched.password?
-                                  <span>{formik.errors.password}</span>
-                                  :null
-
-                   
-                  
-                             }
-                        </div>
-
-
-                        </div> 
-
-                            
-
-                       <div className="container">
-                        <button  className="btn btn-success btn-block ">{register ?'Register':'Login'}</button>
-                      
-                       </div> 
-                            
-                       
-                    </form>
+       
                                 
                     
        
