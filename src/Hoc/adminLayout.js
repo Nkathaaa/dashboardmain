@@ -6,14 +6,12 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Link as RouterLink} from "react-location"
 
-const AdminLayout = () => {
+const AdminLayout = (props) => {
   return (
     <div className="row adminLayout">
         <nav className="col-md-2 d-none d-md-block sidebar">
             <div>
-                
-               
-            <List>
+        <List>
           <ListItem >
             <ListItemButton component={RouterLink } to="dashboard">
             

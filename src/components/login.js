@@ -8,43 +8,38 @@ import Avatar from '@mui/material/Avatar';
 import LockIcon from '@mui/icons-material/Lock';
 
 const Login=(props) =>{
-  /* const [register,setRegister]=useState(false)
+   const [register,setRegister]=useState(false)
     const dispatch=useDispatch()
 
     const formik=useFormik({
-        initialValues:{emailAddress:'',password:''},
-        validationSchema:Yup.object({
-            firstName:Yup
-            .string()
-            .max(12,"Sorry,the name is too long"),
-            lastName:Yup
-            .string(),
-            emailAddress:Yup
-            .string()
-            .email("Enter a valid email address")
-            .required("Sorry the Name is required"),
-            password:Yup
-            .string()
-            .required("Sorry the Name is required")  
-            .min(8,"Sorry,the name is too short"),
-
-           
-        }),
+      initialValues:{ email:'',password:''},
+      validationSchema:Yup.object({
+          email:Yup.string()
+          .required('Sorry the email is required')
+          .email('This is not a valid email'),
+          password:Yup.string()
+          .required('Sorry the password is required')
+      }),
         onSubmit:(values,{resetForm})=>{  
             handleSubmit(values) 
         }
 
         }); 
         const handleSubmit = (values) =>{
+          console.log(values)
        
 
-    // */
+        }
     
-    
+        const errorHelper = (formik, values) => ({
+          error: formik.errors[values] && formik.touched[values] ? true:false,
+          helperText: formik.errors[values] && formik.touched[values] ? formik.errors[values] : null
+      });
     const paperStyle={ padding:20,height:'70vh',width:350,margin:"20px auto"}
     const avatarStyle={backgroundColor:"green"}
   return (
     <>
+     <form className="mt-3" onSubmit={formik.handleSubmit}>
          <Grid>
             <Paper style={paperStyle}>
             <Grid align="center">
@@ -53,17 +48,33 @@ const Login=(props) =>{
                 </Avatar>
                 <h2>   Sign In </h2>
              </Grid> 
-             <TextField  TextField id="standard-basic" variant="standard" label="Email" placeholder="Enter Username" fullWidth required/>
+             <TextField  
+             TextField id="standard-basic"
+             variant="standard"
+              label="Email" 
+               placeholder="Enter Username"
+              fullWidth required
+                {...formik.getFieldProps('email')}
+                {...errorHelper(formik,'email')}/>
             
-             <TextField  TextField id="standard-basic" variant="standard" type="password" label="Password" placeholder="Enter Username" fullWidth required/>
+             <TextField 
+              TextField id="standard-basic"
+               variant="standard"
+                type="password"
+                 label="Password"
+                  placeholder="Enter Username" 
+                  fullWidth required
+                  {...formik.getFieldProps('password')}
+                  {...errorHelper(formik,'password')}/>
              
-             <Button  sx={{marginTop:3,backgroundColor:"green" ,marginBottom:1}}variant="contained" fullWidth >Login</Button>
-             <Typography variant="h6">Do you have an account?
-             <Link href="#">Sign Up</Link>
-             </Typography>
+             <Button type="submit" sx={{marginTop:3,backgroundColor:"#3bcf93" ,marginBottom:1}}variant="contained" fullWidth >Login</Button>
+          
              </Paper>   
 
             </Grid>
+          
+
+            </form>
 
        
                                 

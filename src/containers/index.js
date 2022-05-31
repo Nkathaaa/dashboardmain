@@ -1,12 +1,13 @@
 
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
+import { Grid,Paper,TextField,Button,Typography,Link } from "@mui/material";
+import CssBaseline from '@mui/material/CssBaseline';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Login from "../components/login"
 import SignUp from "../components/signup"
-import Paper from '@mui/material/Paper';
+
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -48,11 +49,28 @@ export default function SignOutContainer() {
   };
 
   return (
-  <Paper elevation={10} style={paperStyle}>    
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+  
+      <Grid container component="main" sx={{ height: '100vh' }}>
+    
+      <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+           // backgroundImage: 'url(https://h4h.wezatech.co.ke/frontend/assets/img/banner/428c74a137f69269.jpg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: '#3bcf93',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+  
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Box sx={{ borderBottom: 1, borderColor: '#3bcf93' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="LOGIN" {...a11yProps(0)} />
+          <Tab sx={{marginRight:10}}label="LOGIN" {...a11yProps(0)} />
           <Tab label="REGISTER" {...a11yProps(1)} />
         
         </Tabs>
@@ -63,8 +81,13 @@ export default function SignOutContainer() {
       <TabPanel value={value} index={1}>
       <SignUp/>
       </TabPanel>
+
+        </Grid>
+
+        </Grid>
+
     
-    </Box>
-   </Paper> 
+  
+ 
   );
 }
