@@ -1,14 +1,9 @@
-
-import './App.css';
-import React from "reactstrap"
-import Router from "./route.js"
-
+import React from "react";
+import "./App.css";
+import Router from "./route.js";
 
 function App() {
-  return (
-  
- <Router/>
-  )
+  return <Router />;
 }
 
 export default App;
