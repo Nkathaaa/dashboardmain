@@ -12,7 +12,7 @@ import GuardAccess from "./Hoc/guardAccess"
 import SignOutContainer from "./containers/index"
 import Login from "./components/login"
 import SignUp from "./components/signup"
-import TableTest from "./components/TableContainer/tableContainer"
+import TableTest from "./components/TableContainer/tableTest"
 import SignInSide from "./components/auth/signinside"
 
 function Router() {
@@ -41,7 +41,7 @@ function Router() {
       <MainLayout>
         <Routes>
         <Route path="/sign" element={<SignInSide/>}/> 
-         <Route path="/table" element={<TableContainer/>}/>  
+         <Route path="/table" element={<TableTest/>}/>  
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
            <Route path="/signout" element={<SignOutContainer/>}/>
