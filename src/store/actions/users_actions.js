@@ -20,7 +20,7 @@ export const registerUser = (values) => {
       //ie for users its users-actions
       dispatch(users.successGlobal("user registered"));
     } catch (error) {
-      dispatch(users.errorGlobal("This is "));
+      dispatch(users.errorGlobal("Error in user registration"));
     }
   };
 };
