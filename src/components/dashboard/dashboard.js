@@ -17,8 +17,8 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import Orders from "./orders";
 import Deposits from "./deposits"
+import TableContainer from "../TableContainer/TableContainer"
 import { mainListItems, secondaryListItems } from './listItems';
 
 
@@ -219,7 +219,7 @@ function DashboardContent() {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                <Orders/>
+                //TableContainer
                 </Paper>
               </Grid>
             </Grid>
