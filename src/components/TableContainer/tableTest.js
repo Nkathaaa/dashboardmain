@@ -10,7 +10,7 @@ import { Container} from 'reactstrap';
 
     useEffect(() => {
       const doFetch = async () => {
-        const response = await fetch("https://randomuser.me/api/?results=10g0")
+        const response = await fetch("https://randomuser.me/api/?results=100")
         const body = await response.json()
         const contacts = body.results
         //console.log(contacts)
@@ -36,10 +36,10 @@ import { Container} from 'reactstrap';
           Header: "Email",
           accessor: "email",
         },
-        {
-          Header: "City",
-          accessor: "location.city",
-        },
+      //  {
+        //  Header: "City",
+        //  accessor: "location.city",
+       // },
       ],
       []
     )

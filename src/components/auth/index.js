@@ -1,159 +1,93 @@
-import React,{useState,useEffect} from 'react'
-import {useDispatch,useSelector} from "react-redux"
-import { registerUser,signInUser } from "../../store/actions/users_actions"
-import { useNavigate } from 'react-router-dom';
-import { useFormik } from 'formik';   
-import * as Yup from 'yup';
 
-const Auth=(props) =>{
-    const [register,setRegister]=useState(false)
-    const dispatch=useDispatch()
-    const navigate=useNavigate()
-    const formik=useFormik({
-        initialValues:{emailAddress:'',password:''},
-        validationSchema:Yup.object({
-            firstName:Yup
-            .string()
-            .max(12,"Sorry,the name is too long"),
-            lastName:Yup
-            .string(),
-            emailAddress:Yup
-            .string()
-            .email("Enter a valid email address")
-            .required("Sorry the Name is required"),
-            password:Yup
-            .string()
-            .required("Sorry the Name is required")  
-            .min(8,"Sorry,the name is too short"),
-
-           
-        }),
-        onSubmit:(values,{resetForm})=>{  
-            handleSubmit(values) 
-        }
-
-        }); 
-        const handleSubmit = (values) =>{
-            if (register){
-              dispatch(registerUser(values))
-              navigate("/dashboard")
-              
-
-            }else{
-                dispatch(signInUser(values))
-           
-               
-            }
-
-        }
-    
-    
-  return (
-    <>
-             <form onSubmit={formik.handleSubmit} style={{marginTop: "120px"}} >
-                   {register ?
-                    <div className="container">
-                        <div className="row mb-4">
-                            <div className="col">
-                            <div className="form-outline">
-                            <label className="form-label" for="form3Example1">First name</label>
-                                <input type="text" id="form3Example1" className="form-control" name="firstName"  {...formik.getFieldProps('firstName')}/>
-                                { formik.errors.firstName && formik.touched.firstName?
-                                  <span>{formik.errors.firstName}</span>
-                                  :null
-
-                                }
-                               
-                            </div>
-                            </div>
-                            <div className="col">
-                            <label className="form-label" for="form3Example2">Last name</label>
-                            <div className="form-outline">
-                                <input type="text" id="form3Example2" className="form-control"  name="lastName"  {...formik.getFieldProps('lastName')}/>
-                                { formik.errors.lastName && formik.touched.lastName?
-                                  <span>{formik.errors.lastName}</span>
-                                  :null
-
-                                }
-                            </div>
-                            </div>
-                        </div>
-
-                        <div className="form-outline mb-4">
-                        <label className="form-label" for="form3Example3">Email address</label>
-                            <input type="email" id="form3Example3" className="form-control"  name="emailAddress"  {...formik.getFieldProps('emailAddress')}/>
-                            { formik.errors.emailAddress && formik.touched.emailAddress?
-                                  <span>{formik.errors.emailAddress}</span>
-                                  :null
-
-                                }          
-                    
-                        </div>
-
-                        <div className="form-outline mb-4">
-                        <label className="form-label" for="form3Example4">Password</label>
-                            <input type="password" id="form3Example4" className="form-control"  name="password" {...formik.getFieldProps('password')} />
-                            { formik.errors.password && formik.touched.password?
-                                  <span>{formik.errors.password}</span>
-                                  :null
-
-                   
-                  
-                             }
-                        </div>
+import * as React from 'react';
+import Tabs from '@mui/material/Tabs';
+import { Grid,Paper,TextField,Button,Typography,Link } from "@mui/material";
+import CssBaseline from '@mui/material/CssBaseline';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import Login from "./login"
+import SignUp from "./signup"
 
 
-                        </div> 
-
-
-
-                            :
-
-
-
-
-                            <div className="container">
-                       
-
-                        <div className="form-outline mb-4">
-                        <label className="form-label" for="form3Example3">Email address</label>
-                            <input type="email" id="form3Example3" className="form-control"  name="emailAddress"  {...formik.getFieldProps('emailAddress')}/>
-                            { formik.errors.emailAddress && formik.touched.emailAddress?
-                                  <span>{formik.errors.emailAddress}</span>
-                                  :null
-
-                                }          
-                    
-                        </div>
-
-                        <div className="form-outline mb-4">
-                        <label className="form-label" for="form3Example4">Password</label>
-                            <input type="password" id="form3Example4" className="form-control"  name="password" {...formik.getFieldProps('password')} />
-                            { formik.errors.password && formik.touched.password?
-                                  <span>{formik.errors.password}</span>
-                                  :null
-
-                   
-                  
-                             }
-                        </div>
-
-
-                        </div> 
-
-                            }
-
-                       <div className="container">
-                        <button  className="btn btn-success btn-block ">{register ?'Register':'Login'}</button>
-                        <button className="btn btn-primary btn-block" t style={{margin:'50px'}} onClick={()=>{setRegister(!register)}} >Want to { !register? 'Register':'Login'}</button>
-                       </div> 
-                            
-                       
-                    </form>
-                                
-                    
-       
-    </>
-  )
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
 }
-export default Auth
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 2 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+const paperStyle={ width:600,margin:'120px auto'}
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+export default function SignOutContainer() {
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+  
+      <Grid container component="main" sx={{ height: '100vh' }}>
+    
+      <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+           // backgroundImage: 'url(https://h4h.wezatech.co.ke/frontend/assets/img/banner/428c74a137f69269.jpg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: '#3bcf93',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+  
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Box sx={{ borderBottom: 1, borderColor: '#3bcf93' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab sx={{marginRight:10}}label="LOGIN" {...a11yProps(0)} />
+          <Tab label="REGISTER" {...a11yProps(1)} />
+        
+        </Tabs>
+      </Box>
+      <TabPanel value={value} index={0}>
+        <Login/>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+      <SignUp/>
+      </TabPanel>
+
+        </Grid>
+
+        </Grid>
+
+    
+  
+ 
+  );
+}
