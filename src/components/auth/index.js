@@ -42,7 +42,7 @@ function a11yProps(index: number) {
   };
 }
 
-export default function SignOutContainer() {
+export default function Auth() {
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);

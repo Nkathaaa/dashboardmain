@@ -3,13 +3,16 @@ import { Grid,Paper,TextField,Button,Typography,Link } from "@mui/material"
 import {useDispatch,useSelector} from "react-redux"
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';   
+import { registerUser } from "../../store/actions/users_actions"
 import * as Yup from 'yup';
 import Avatar from '@mui/material/Avatar';
 import LockIcon from '@mui/icons-material/Lock';
 
+
 const Login=(props) =>{
    const [register,setRegister]=useState(false)
     const dispatch=useDispatch()
+    const navigate=useNavigate()
 
     const formik=useFormik({
       initialValues:{ email:'',password:''},
@@ -26,8 +29,8 @@ const Login=(props) =>{
 
         }); 
         const handleSubmit = (values) =>{
-          console.log(values)
-       
+          dispatch(registerUser())
+          navigate('/dashboard')
 
         }
     

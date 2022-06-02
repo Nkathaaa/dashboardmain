@@ -9,7 +9,7 @@ import { useSelector,useDispatch} from "react-redux";
 import React,{ useEffect,useState} from 'react';
 import Loader  from "./utils/loader"
 import GuardAccess from "./Hoc/guardAccess"
-import TableTest from "./components/TableContainer/tableTest"
+
 
 
 function Router() {
@@ -38,7 +38,7 @@ function Router() {
       <MainLayout>
         <Routes>
        
-         <Route path="/table" element={<TableTest/>}/>  
+     
             <Route path="/dashboard" element={<Dashboard/>}/>
             <Route path="/home" element={<Home />}/>
             <Route path="/auth" element={<Auth />}/>

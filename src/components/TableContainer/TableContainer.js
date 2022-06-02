@@ -99,14 +99,14 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
       <Row style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
         <Col md={3}>
           <Button
-            color='primary'
+            color='success'
             onClick={() => gotoPage(0)}
             disabled={!canPreviousPage}
           >
             {'<<'}
           </Button>
           <Button
-            color='primary'
+            color='success'
             onClick={previousPage}
             disabled={!canPreviousPage}
           >
@@ -137,18 +137,18 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
           >
             >
             {[10, 20, 30, 40, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
+              <option key={pageSize} value={pageSize} color="success">
                 Show {pageSize}
               </option>
             ))}
           </Input>
         </Col>
         <Col md={3}>
-          <Button color='primary' onClick={nextPage} disabled={!canNextPage}>
+          <Button color='success' onClick={nextPage} disabled={!canNextPage}>
             {'>'}
           </Button>
           <Button
-            color='primary'
+            color='success'
             onClick={() => gotoPage(pageCount - 1)}
             disabled={!canNextPage}
           >

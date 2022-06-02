@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useMemo,useEffect,useState} from "react";
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
@@ -18,8 +17,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Deposits from "./deposits"
-import TableContainer from "../TableContainer/TableContainer"
 import { mainListItems, secondaryListItems } from './listItems';
+import axios from "axios"
+import TableContainer  from "../TableContainer/TableContainer"
+import  {Container}from 'reactstrap';
+
 
 
 function Copyright(props) {
@@ -35,7 +37,8 @@ function Copyright(props) {
   );
 }
 
-const drawerWidth = 240;
+
+const drawerWidth = 220;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -89,6 +92,43 @@ function DashboardContent() {
     setOpen(!open);
   };
 
+const [data, setData] = useState([]);
+
+useEffect(() => {
+  const doFetch = async () => {
+    const response = await fetch("https://randomuser.me/api/?results=100")
+    const body = await response.json()
+    const contacts = body.results
+    //console.log(contacts)
+    setData(contacts)
+  }
+  doFetch()
+}, [])
+const columns = useMemo(
+  () => [
+    {
+      Header: "Title",
+      accessor: "name.title",
+    },
+    {
+      Header: "First Name",
+      accessor: "name.first",
+    },
+    {
+      Header: "Last Name",
+      accessor: "name.last",
+    },
+    {
+      Header: "Email",
+      accessor: "email",
+    },
+    {
+      Header: "City",
+     accessor: "location.city",
+    },
+  ],
+  []
+)
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -97,6 +137,7 @@ function DashboardContent() {
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
+              backgroundColor:"#3bcf93"
             }}
           >
             <IconButton
@@ -112,13 +153,14 @@ function DashboardContent() {
               <MenuIcon />
             </IconButton>
             <Typography
+             align="center"
               component="h1"
               variant="h6"
               color="inherit"
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              HUSTLER FOR HUSTLER DASHBOARD
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
@@ -150,81 +192,25 @@ function DashboardContent() {
         <Box
           component="main"
           sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
+            backgroundColor:'#F1F3F5',
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
+       
+            <Grid cspacing={3}>
          
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits/>
-               
-                </Paper>
-              </Grid>
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits/>
-               
-                </Paper>
-              </Grid>
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits/>
-               
-                </Paper>
-              </Grid>
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits/>
-               
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                //TableContainer
+                <Container style={{ marginTop: 100 }}>
+                    <TableContainer columns={columns} data={data} />
+                  </Container>
                 </Paper>
               </Grid>
             </Grid>
-            <Copyright sx={{ pt: 4 }} />
-          </Container>
+         
         </Box>
       </Box>
     </ThemeProvider>
