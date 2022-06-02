@@ -18,7 +18,7 @@ export const registerUser = (values) => {
       
       //dispatch the success toast,the users.successGlobal refers to the funtions under the action type
       //ie for users its users-actions
-      dispatch(users.successGlobal("user registered"));
+      dispatch(users.successGlobal("User Succesfully Logged In "));
     } catch (error) {
       dispatch(users.errorGlobal("Error in user registration"));
     }

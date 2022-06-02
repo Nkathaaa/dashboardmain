@@ -24,7 +24,7 @@ const Header = (props) => {
     const location = useLocation();
     const navigate=useNavigate()
     let dispatch=useDispatch()
-     console.log(location)
+     //console.log(location)
 
      //const signOutUser =()=>{
      //  dispatch(signOut())
@@ -57,11 +57,11 @@ const Header = (props) => {
           showToast("ERROR",msg)
           dispatch(clearNotifications())
       }
-  },[notifications,props.history])
+  },[notifications])
 
     return(
         <>  
-            <nav className="navbar fixed-top">
+         {/*   <nav className="navbar fixed-top">
                 <div  className="navbar-brand d-flex align-items-center">
                 </div>
                 
@@ -90,9 +90,11 @@ const Header = (props) => {
 
 
             {/*}<SideDrawer signOutUser={signOutUser()}/>*/}
-            <SideDrawer />
+            
+          
         </>
     )
 }
 
 export default Header;
+         

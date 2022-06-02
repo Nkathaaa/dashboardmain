@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
   
    <>
      {props.children}
+     
      <ToastContainer/>
    </>
 

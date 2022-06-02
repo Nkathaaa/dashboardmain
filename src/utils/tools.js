@@ -7,7 +7,7 @@ export const showToast=(type,msg)=> {
       switch(type){
         case "SUCCESS":
             toast.success(msg, {
-                position: toast.POSITION.TOP_LEFT
+                position: toast.POSITION.BOTTOM_RIGHT
               });
         break; 
         case "ERROR":
