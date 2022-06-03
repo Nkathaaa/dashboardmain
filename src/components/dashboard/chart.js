@@ -12,7 +12,7 @@ class Charts extends Component {
         chart: {
           id: "basic-bar",
           toolbar: {
-            show: false
+            show: true
           }
         },
         plotOptions: {
@@ -32,28 +32,34 @@ class Charts extends Component {
           fillOpacity: 0,
           strokeOpacity: 0,
           hover: {
-            size: 8
+            size: 3
           }
         },
         yaxis: {
-          tickAmount: 5,
+          tickAmount: 10,
           min: 0,
-          max: 100
+          max: 80
         }
       },
       seriesMixedChart: [
+        
         {
-          name: "series-1",
+          name: "Donations",
           type: "line",
           data: [30, 40, 25, 50, 49, 21, 70, 51]
         },
         {
-          name: "series-2",
+          name: "Volunteers",
           type: "column",
           data: [23, 12, 54, 61, 32, 56, 81, 19]
         },
         {
-          name: "series-3",
+          name: "Anonymous",
+          type: "column",
+          data: [62, 12, 45, 55, 76, 41, 23, 43]
+        },
+        {
+          name: "AYYY",
           type: "column",
           data: [62, 12, 45, 55, 76, 41, 23, 43]
         }
@@ -135,7 +141,7 @@ class Charts extends Component {
           stacked: true,
           stackType: "100%",
           toolbar: {
-            show: false
+            show: true
           }
         },
         plotOptions: {
@@ -152,7 +158,7 @@ class Charts extends Component {
           width: 0
         },
         xaxis: {
-          categories: ["Fav Color"],
+          categories: ["Donations/Volunteers/Anonymous"],
           labels: {
             show: false
           },
@@ -196,10 +202,7 @@ class Charts extends Component {
           name: "yellow",
           data: [12]
         },
-        {
-          name: "red",
-          data: [65]
-        }
+       
       ]
     };
   }
@@ -234,8 +237,10 @@ class Charts extends Component {
   render() {
     return (
       <div className="app">
-        <div className="row">
-          <div className="col mixed-chart">
+      <div className="container">
+        <div className="row ">
+
+          <div className="col-md-6 mixed-chart">
             <Chart
               options={this.state.optionsMixedChart}
               series={this.state.seriesMixedChart}
@@ -244,21 +249,22 @@ class Charts extends Component {
             />
           </div>
 
-          <div className="col radial-chart">
+          <div className="col-md-6  radial-chart">
             <Chart
               options={this.state.optionsRadial}
               series={this.state.seriesRadial}
               type="radialBar"
-              width="280"
+              width="350"
             />
           </div>
         </div>
+        
 
         <div className="row">
-          <div className="col percentage-chart">
+          <div className="col-md-12 d-flex justify-content-center percentage-chart">
             <Chart
               options={this.state.optionsBar}
-              height={140}
+              height={130}
               series={this.state.seriesBar}
               type="bar"
               width={500}
@@ -268,6 +274,7 @@ class Charts extends Component {
           <p className="col">
            {/*<button onClick={this.updateCharts}>Update!</button>*/}
           </p>
+        </div>
         </div>
       </div>
     );
