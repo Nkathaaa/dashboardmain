@@ -22,6 +22,7 @@ const Login=(props) =>{
           .email('This is not a valid email'),
           password:Yup.string()
           .required('Sorry the password is required')
+          .min(8, 'Must be 8 digits or more')
       }),
         onSubmit:(values,{resetForm})=>{  
             handleSubmit(values) 

@@ -52,6 +52,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
     gotoPage(page);
   };
 
+
   return (
     <Fragment>
       <Table bordered hover {...getTableProps()}>
@@ -96,7 +97,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
         </tbody>
       </Table>
 
-      <Row style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
+    {/*     <Row style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
         <Col md={3}>
           <Button
             color='success'
@@ -120,7 +121,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
           </strong>
         </Col>
         <Col md={2}>
-          <Input
+       <Input
             type='number'
             min={1}
             style={{ width: 70 }}
@@ -141,7 +142,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
                 Show {pageSize}
               </option>
             ))}
-          </Input>
+          </Input> 
         </Col>
         <Col md={3}>
           <Button color='success' onClick={nextPage} disabled={!canNextPage}>
@@ -153,9 +154,9 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
             disabled={!canNextPage}
           >
             {'>>'}
-          </Button>
+            </Button> 
         </Col>
-      </Row>
+      </Row>*/}
     </Fragment>
   );
 };

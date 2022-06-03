@@ -9,7 +9,10 @@ import { useSelector,useDispatch} from "react-redux";
 import React,{ useEffect,useState} from 'react';
 import Loader  from "./utils/loader"
 import GuardAccess from "./Hoc/guardAccess"
-
+import  SortedTable from "./components/Table/SortedTable"
+import BasicTable from "./components/Table/BasicTable"
+import FilteredTable from "./components/Table/FilteringTable"
+import RowSelection from "./components/Table/RowSelection"
 
 
 function Router() {
@@ -38,8 +41,10 @@ function Router() {
       <MainLayout>
        
         <Routes>
-       
-     
+        <Route path ="/tablerow" element={<RowSelection/>}/>
+        <Route path ="/tablefilter" element={<FilteredTable/>}/>
+            <Route path ="/table" element={<BasicTable/>}/>
+            <Route path ="/tablesort" element={<SortedTable/>}/>
             <Route path="/dashboard" element={<Dashboard/>}/>
             <Route path="/home" element={<Home />}/>
             <Route path="/auth" element={<Auth />}/>
