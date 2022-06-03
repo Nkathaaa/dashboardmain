@@ -5,9 +5,11 @@ import {
   useFilters,
   useExpanded,
   usePagination,
+  useRowSelect
 } from 'react-table';
 import { Table, Row, Col, Button, Input } from 'reactstrap';
 import { Filter, DefaultColumnFilter } from './filter';
+import Checkbox from "../../components/Table/Checkbox"
 
 const TableContainer = ({ columns, data, renderRowSubComponent }) => {
   const {
@@ -25,6 +27,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
     nextPage,
     previousPage,
     setPageSize,
+    selectedFlatRows,
     state: { pageIndex, pageSize },
   } = useTable(
     {
@@ -36,8 +39,32 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
     useFilters,
     useSortBy,
     useExpanded,
-    usePagination
+    usePagination,useRowSelect,
+    (hooks) => {
+      hooks.visibleColumns.push((columns) => [
+        // Let's make a column for selection
+        {
+          id: "selection",
+          // The header can use the table's getToggleAllRowsSelectedProps method
+          // to render a checkbox
+          Header: ({ getToggleAllRowsSelectedProps }) => (
+            <div>
+              <Checkbox {...getToggleAllRowsSelectedProps()} />
+            </div>
+          ),
+          // The cell can use the individual row's getToggleRowSelectedProps method
+          // to the render a checkbox
+          Cell: ({ row }) => (
+            <div>
+              <Checkbox {...row.getToggleRowSelectedProps()} />
+            </div>
+          ),
+        },
+        ...columns,
+      ]);
+    }
   );
+  
 
   const generateSortingIndicator = (column) => {
     return column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : '';
@@ -97,7 +124,7 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
         </tbody>
       </Table>
 
-    {/*     <Row style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
+        <Row style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
         <Col md={3}>
           <Button
             color='success'
@@ -156,7 +183,19 @@ const TableContainer = ({ columns, data, renderRowSubComponent }) => {
             {'>>'}
             </Button> 
         </Col>
-      </Row>*/}
+      </Row>
+          <p>Selected Rows</p>
+      <pre>
+        <code>
+          {JSON.stringify(
+            {
+                selectedFlatRows:selectedFlatRows.map((row)=>row.original),
+            },
+            null,
+            2
+          )}
+        </code>
+      </pre>
     </Fragment>
   );
 };
