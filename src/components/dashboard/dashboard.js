@@ -21,6 +21,7 @@ import { mainListItems, secondaryListItems } from './listItems';
 import axios from "axios"
 import TableContainer  from "../TableContainer/TableContainer"
 import  {Container}from 'reactstrap';
+import Chart from "./chart"
 
 
 
@@ -198,8 +199,9 @@ const columns = useMemo(
             overflow: 'auto',
           }}
         >
+         
           <Toolbar />
-       
+          <Chart/>
             <Grid cspacing={3}>
          
               <Grid item xs={12}>
