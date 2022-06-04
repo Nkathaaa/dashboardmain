@@ -7,6 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';   
 import * as Yup from 'yup';
+import { registerUser } from "../../store/actions/users_actions"
 import Checkbox from '@mui/material/Checkbox';
 
 const SignUp=(props) =>{
@@ -37,7 +38,7 @@ const SignUp=(props) =>{
 
         }); 
         const handleSubmit = (values) =>{
-        console.log(values)
+        dispatch(registerUser())
 
         }
         const errorHelper = (formik, values) => ({
@@ -82,7 +83,7 @@ const SignUp=(props) =>{
                      label='Phone Number' 
                      variant="standard" 
                      placeholder="Enter your phone number"
-                     required
+                
                      {...formik.getFieldProps('phoneNumber')}
                      {...errorHelper(formik,'phoneNumber')}/>
                        

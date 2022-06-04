@@ -8,17 +8,19 @@ import { getAuthHeader,getTokenCookie,removeTokenCookie } from "../../utils/tool
 export const registerUser = (values) => {
   return async (dispatch) => {
     try {
-      //const user = await axios.post(``,{
-      //   email: values.email,
-      //    password: values.password
-      // });
-      // console.log(user)
+      const user = await axios.post(`https://h4h.wezatech.co.ke/api/register`,{
+       name:values.name,  
+       email: values.email,
+        password: values.password,
+        password_confirmation:values.password
+       });
+       console.log(user)
       //dispatch(users.authUser({data: user.data, auth: true }))
-      console.log(values);
+     // console.log(values);
       
       //dispatch the success toast,the users.successGlobal refers to the funtions under the action type
       //ie for users its users-actions
-      dispatch(users.successGlobal("User Succesfully Logged In "));
+      dispatch(users.successGlobal("User Succesfully Registered  "));
     } catch (error) {
       dispatch(users.errorGlobal("Error in user registration"));
     }
@@ -26,31 +28,25 @@ export const registerUser = (values) => {
 };
 
 export const signInUser = (values) => {
-  //return async (dispatch) => {
-   // try {
-      // const user=await axios.post(``,{
-      //  email:values.email,
-      //  password:values.password
-      // });
-      // console.log(values)
-      // dispatch(users.signUser({data:user.data,auth:true}))
+  return async (dispatch) => {
+    try {
+      console.log("we are getting here")
+     
+       const user=await axios.post(`https://h4h.wezatech.co.ke/api/login`,{
+        email:values.email,
+       password:values.password
+       });
+     
+       dispatch(users.signUser({data:user.data,auth:true}))
+       dispatch(users.successGlobal("User Succesfully Logged In "));
 
-     // endpoint.get("/sanctum/csrf-cookie").then(() => {
-      //  endpoint
-      //    .post("/api/login", {
-      //      email: values.email,
-      //      password: values.password,
-      //    })
-       //   .then((response) => {
-       //     console.log(response.data);
-      //    });
-     // });
-   // } catch (error) {
-   //   dispatch(users.errorGlobal("This is an error"));
-   // }
-  //};
-//};
-    };
+  
+    } catch (error) {
+      dispatch(users.errorGlobal("This is an error"));
+   }
+  };
+};
+    
 
 
  export const isAuthUser=()=>{
